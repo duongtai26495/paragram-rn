@@ -1,0 +1,146 @@
+import { View, Text, StyleSheet, Dimensions, Platform } from 'react-native'
+import React from 'react'
+import Colors from '../colors/Colors'
+const width = Dimensions.get('window').width;
+const widthComponent = width/1.1;
+const height = Dimensions.get('window').height;
+const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
+const padding = Platform.OS === 'ios' ? 10 : 5;
+const authentication_style = StyleSheet.create({
+    container:{
+        width:'100%',
+        height:'100%',
+        backgroundColor:Colors.DARK,
+        justifyContent:'center'
+    },
+    bg_signin:{
+        width:'100%',
+        height:'100%',
+        position:'absolute',
+        bottom:0,
+    },
+    topCircle:{
+        position:'absolute',
+        width:width*1.5,
+        height:height/2,
+        top:0,
+        alignSelf:'center',
+        zIndex:0,
+        borderBottomEndRadius:width,
+        borderBottomStartRadius:width,
+        overflow:'hidden'
+    },
+    imgTopCircle:{
+        width:'100%',
+        height:height/2,
+    },
+    viewFull:{
+        width:'100%',
+        height:'100%',
+        justifyContent:'center',
+    },
+    signInTab:{
+        width:'100%',
+        height:'100%',
+        resizeMode:'cover',
+        padding:5,
+        backgroundColor:Colors.WHITE,
+
+    },
+    wlcHeader:{
+        width:'100%',
+        alignSelf:'center',
+        fontSize:25,
+        color:Colors.PRIMARY,
+        marginVertical:10,
+        marginHorizontal:10,
+    },
+    statusBar:{
+        height:APPBAR_HEIGHT,
+    },
+    form_input:{
+        width:'100%',
+        backgroundColor:Colors.WHITE,
+        paddingVertical:padding,
+        paddingHorizontal:10,
+        borderRadius:15,
+        fontSize:15,
+        elevation:2,
+        shadowColor:Colors.SMOKE,
+        alignSelf:'center',
+        marginVertical:10,
+        flexDirection:'row',
+        alignItems:'center'
+    },
+    signInView:{
+        width:widthComponent,
+        padding:10,
+        elevation:3,
+        shadowColor:Colors.DARK,
+        justifyContent:'center',
+        alignSelf:'center',
+        backgroundColor:Colors.LIGHT,
+        borderRadius:20,
+    },
+    btnGo:{
+        width:'100%',
+        paddingVertical:10,
+        paddingHorizontal:15,
+        borderRadius:15,
+        marginVertical:10,
+        alignSelf:'center',
+        flexDirection:'row',
+        alignItems:'center'
+    },
+    btnGoLabel:{
+        color:Colors.PRIMARY,
+        fontSize:20,
+        fontWeight:'bold',
+        alignSelf:'center',
+        flex:1,
+    },
+    btnArrow:{
+        height:80,
+        width:80,
+        backgroundColor:Colors.PRIMARY,
+        borderRadius:100,
+        justifyContent:'center',
+        elevation:3,
+        shadowColor:Colors.SMOKE
+    },
+    iconArrow:{
+        height:25,
+        width:25,
+        alignSelf:'center',
+        marginHorizontal:10,
+    },
+    link:{
+        color:Colors.PRIMARY,
+        fontSize:15,
+        marginVertical:10,
+        alignSelf:'center'
+    },
+    iconInput:{
+        width:20,
+        height:20,
+        marginRight:10,
+    },
+    authen_input:{
+        color:Colors.PRIMARY,
+        fontSize:15,
+        fontWeight:'bold',
+        marginVertical:5,
+        flex:1,
+        borderLeftWidth:1,
+        borderLeftColor:Colors.SMOKE,
+        paddingLeft:10,
+    },
+    logo:{
+        width:100,
+        height:100,
+        alignSelf:'center',
+        marginVertical:15,
+    }
+})
+
+export default authentication_style
