@@ -3,4 +3,5 @@ export default {
     PROFILEPAGE : 'ProfilePage',
     SIGNIN : 'SignIn',
     SIGNUP : 'SignUp',
+    AUTHENTICATIONSTACK : 'AuthenticationStack',
 }

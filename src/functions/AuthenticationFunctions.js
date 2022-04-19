@@ -17,6 +17,7 @@ export async function LoginWithUsernamePassword(username, password) {
     let uname = username;
     let pw = password;
     let dataLogin = new FormData();
+    console.log(url)
     dataLogin.append('username', uname);
     dataLogin.append('password', pw);
     let option = {

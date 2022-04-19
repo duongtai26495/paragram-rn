@@ -5,4 +5,11 @@ export default {
     OUTSIDE : require('../assets/icons/outside.png'),
     INSIDE : require('../assets/icons/inside.png'),
     LOGO : require('../assets/icons/logo.png'),
+    FULLNAME : require('../assets/icons/fullname.png'),
+    EMAIL : require('../assets/icons/email.png'),
+    GENDER : require('../assets/icons/gender.png'),
+    BIRTHDAY : require('../assets/icons/birthday.png'),
+    FACEBOOK : require('../assets/icons/facebook.png'),
+    GOOGLE : require('../assets/icons/google.png'),
+    TWITTER : require('../assets/icons/twitter.png'),
 }

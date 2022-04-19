@@ -16,7 +16,7 @@ const Home = ({navigation,route}) => {
             console.log("User logged in")
         }else{
             console.log("User do not login")
-            navigation.dispatch(StackActions.replace(NavigationPath.SIGNIN))
+            navigation.dispatch(StackActions.replace(NavigationPath.AUTHENTICATIONSTACK))
         }
     }
 

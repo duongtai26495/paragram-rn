@@ -2,144 +2,89 @@ import { View, Text, StyleSheet, Dimensions, Platform } from 'react-native'
 import React from 'react'
 import Colors from '../colors/Colors'
 const width = Dimensions.get('window').width;
-const widthComponent = width/1.1;
+const widthComponent = width / 1.1;
 const height = Dimensions.get('window').height;
 const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
 const padding = Platform.OS === 'ios' ? 10 : 5;
 const authentication_style = StyleSheet.create({
-    container:{
-        width:'100%',
-        height:'100%',
-        backgroundColor:Colors.DARK,
-        justifyContent:'center'
+    container_authen: {
+        width: '100%',
+        height: '100%',
+        backgroundColor: Colors.PRIMARY,
+        justifyContent: 'center'
     },
-    bg_signin:{
-        width:'100%',
-        height:'100%',
-        position:'absolute',
-        bottom:0,
+    app_name: {
+        color: Colors.WHITE,
+        fontSize: 20,
+        alignSelf: 'center',
+        fontWeight: 'bold'
     },
-    topCircle:{
-        position:'absolute',
-        width:width*1.5,
-        height:height/2,
-        top:0,
-        alignSelf:'center',
-        zIndex:0,
-        borderBottomEndRadius:width,
-        borderBottomStartRadius:width,
-        overflow:'hidden'
+    authen_btn: {
+        width: widthComponent,
+        padding: 15,
+        backgroundColor: Colors.WHITE,
+        alignSelf: 'center',
+        borderRadius: 5,
+        elevation: 5,
+        shadowColor: Colors.DARK,
+        marginTop: 20
     },
-    imgTopCircle:{
-        width:'100%',
-        height:height/2,
+    authen_btn_label: {
+        alignSelf: 'center',
+        color: Colors.PRIMARY,
+        fontWeight: 'bold'
     },
-    viewFull:{
-        width:'100%',
-        height:'100%',
-        justifyContent:'center',
+    welcome_label: {
+        fontSize: 20,
+        alignSelf: 'center',
+        width: widthComponent,
+        marginVertical: 20
     },
-    signInTab:{
-        width:'100%',
-        height:'100%',
-        resizeMode:'cover',
-        padding:5,
-        backgroundColor:Colors.WHITE,
-
+    input_authen: {
+        width: '100%',
+        flex: 1,
+        borderLeftColor: Colors.SMOKE,
+        borderLeftWidth: 1,
+        paddingLeft: 10,
     },
-    wlcHeader:{
-        width:'100%',
-        alignSelf:'center',
-        fontSize:25,
-        color:Colors.PRIMARY,
-        marginVertical:10,
-        marginHorizontal:10,
-    },
-    statusBar:{
-        height:APPBAR_HEIGHT,
-    },
-    form_input:{
-        width:'100%',
-        backgroundColor:Colors.WHITE,
-        paddingVertical:padding,
-        paddingHorizontal:10,
-        borderRadius:15,
-        fontSize:15,
-        elevation:2,
-        shadowColor:Colors.SMOKE,
-        alignSelf:'center',
-        marginVertical:10,
-        flexDirection:'row',
-        alignItems:'center'
-    },
-    signInView:{
-        width:widthComponent,
-        padding:10,
-        elevation:3,
-        shadowColor:Colors.DARK,
-        justifyContent:'center',
-        alignSelf:'center',
-        backgroundColor:Colors.LIGHT,
-        borderRadius:20,
-    },
-    btnGo:{
-        width:'100%',
+    form_authen: {
+        width: widthComponent,
+        flexDirection: 'row',
+        backgroundColor: Colors.WHITE,
+        paddingHorizontal:5,
         paddingVertical:10,
-        paddingHorizontal:15,
-        borderRadius:15,
-        marginVertical:10,
+        borderRadius: 5,
+        elevation: 4,
+        shadowColor: Colors.SMOKE,
+        alignSelf: 'center',
+        marginVertical: 10
+    },
+    icon_input: {
+        width: 20,
+        height: 20,
+        marginRight:5,
         alignSelf:'center',
-        flexDirection:'row',
-        alignItems:'center'
     },
-    btnGoLabel:{
-        color:Colors.PRIMARY,
-        fontSize:20,
-        fontWeight:'bold',
-        alignSelf:'center',
-        flex:1,
-    },
-    btnArrow:{
-        height:80,
-        width:80,
-        backgroundColor:Colors.PRIMARY,
-        borderRadius:100,
-        justifyContent:'center',
-        elevation:3,
-        shadowColor:Colors.SMOKE
-    },
-    iconArrow:{
-        height:25,
-        width:25,
-        alignSelf:'center',
-        marginHorizontal:10,
-    },
-    link:{
-        color:Colors.PRIMARY,
-        fontSize:15,
-        marginVertical:10,
+    social_view: {
+        width: widthComponent,
+        justifyContent: 'center',
+        flexDirection: 'row',
         alignSelf:'center'
     },
-    iconInput:{
-        width:20,
-        height:20,
-        marginRight:10,
+    icon_sc: {
+        width: 30,
+        height: 30,
     },
-    authen_input:{
-        color:Colors.PRIMARY,
-        fontSize:15,
-        fontWeight:'bold',
-        marginVertical:5,
+    icon_sc_touch: {
         flex:1,
-        borderLeftWidth:1,
-        borderLeftColor:Colors.SMOKE,
-        paddingLeft:10,
-    },
-    logo:{
-        width:100,
-        height:100,
-        alignSelf:'center',
-        marginVertical:15,
+        padding:7,
+        elevation: 2,
+        backgroundColor: Colors.WHITE,
+        shadowColor: Colors.DARK,
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 5
     }
 })
 
