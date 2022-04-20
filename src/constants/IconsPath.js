@@ -12,4 +12,6 @@ export default {
     FACEBOOK : require('../assets/icons/facebook.png'),
     GOOGLE : require('../assets/icons/google.png'),
     TWITTER : require('../assets/icons/twitter.png'),
+    FRIENDS: require('../assets/icons/friends.png'),
+    HOME: require('../assets/icons/home.png'),
 }

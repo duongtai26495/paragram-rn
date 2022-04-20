@@ -7,7 +7,7 @@ import Colors from '../assets/colors/Colors'
 import IconsPath from '../constants/IconsPath'
 import Storage from "../constants/Storage"
 import CustomIndicator from '../components/CustomIndicator'
-import { LoginWithUsernamePassword, IsExistToken } from '../functions/AuthenticationFunctions'
+import { LoginWithUsernamePassword, IsExistToken, RegisterWithUsernamePassword } from '../functions/AuthenticationFunctions'
 import { StackActions } from '@react-navigation/native'
 import NavigationPath from '../constants/NavigationPath'
 import AsyncStorage from "@react-native-async-storage/async-storage"
@@ -17,153 +17,127 @@ const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 const SignUp = ({ navigation, route }) => {
 
-    useEffect(() => {
-        wlcEff()
-    }, [])
-
-    const pwRef = useRef()
-    const fade = useRef(new Animated.Value(0)).current;
-    const slide = useRef(new Animated.Value(-width / 3)).current;
-    const scale = useRef(new Animated.Value(50)).current;
-    const scaleUp = useRef(new Animated.Value(1)).current;
-    const [isLoading, setLoading] = useState(false);
-    const [username, setUsername] = useState()
-    const [password, setPassword] = useState()
     const [fullname, setFullname] = useState()
     const [email, setEmail] = useState()
+    const [username, setUsername] = useState()
+    const [password, setPassword] = useState()
+    const [isLoading, setLoading] = useState(false)
+    const [msg, setMsg] = useState()
+    const usernameRef = useRef()
+    const passwordRef = useRef()
+    const submitRef = useRef()
+    const cPasswordRef = useRef()
+    const emailRef = useRef()
 
-    const wlcEff = () => {
-        Animated.sequence([
-            Animated.timing(fade, { toValue: 1, duration: 300, useNativeDriver: true }),
-            Animated.timing(slide, { toValue: 1, duration: 1500, useNativeDriver: true, easing: Easing.exp }),
+    const Register = async () => {
+        let User = {
+            'full_name': fullname,
+            'email': email,
+            'username': username,
+            'password': password
+        }
+        setLoading(true)
+        await RegisterWithUsernamePassword(User)
+            .then(response => {
+                const data = response.result;
+                const msg = response.msg;
 
-        ]).start()
+                AsyncStorage.multiSet([
+                    [Storage.FULLNAME_STORAGE, data.full_name],
+                    [Storage.USERNAME_STORAGE, data.username],
+                    [Storage.EMAIL_STORAGE, data.email]],
+                    () => {
+                        setLoading(false)
+                        navigation.dispatch(StackActions.replace(NavigationPath.SIGNIN, { msg: msg }))
+                    })
+            }).catch(error => {
+                setLoading(false)
+                console.log(error)
+            })
     }
 
-    const toSignIn = () => {
-        navigation.dispatch(StackActions.replace(NavigationPath.SIGNIN))
-    }
-
-    const SignUp = async () => {
-        let user = {
-            'full_name':fullname,
-            'username':username,
-            'email':email,
-            'password':password
-        }
-        if (user != null) {
-            setLoading(true)
-            let token = await SignInWithUsername(user)
-            await AsyncStorage.setItem(Storage.LOCAL_ACCESS_TOKEN, token.access_token)
-                .then(() => {
-                    navigation.dispatch(StackActions.replace(NavigationPath.HOMEPAGE))
-                })
-                .catch(error => {
-                    console.log(error)
-                    setLoading(false)
-                })
-
-        } else {
-            setLoading(false)
-        }
+    const SignIn = () => {
+        navigation.dispatch(StackActions.replace(NavigationPath.SIGNIN));
     }
 
     return (
-        <SafeAreaView style={authentication_style.container}>
-            <CustomStatusBar barStyle={ConstantsString.DARK} />
-            {isLoading ? <CustomIndicator /> : null}
-            <Image
-                blurRadius={10}
-                source={ImagesPath.BG_DEFAULT[1]}
-                style={authentication_style.bg_signin} />
-            <View style={[authentication_style.signInView,{marginTop:20}]}>
+        <View style={[authentication_style.container_authen, { backgroundColor: Colors.WHITE }]}>
+            <SafeAreaView>
+                <CustomStatusBar barStyle={ConstantsString.DARK} />
                 <ScrollView>
-                    <Animated.View style={[{ opacity: fade }]}>
-                        <RollLogo />
-                        <View style={authentication_style.form_input}>
-                            <Image source={IconsPath.FULLNAME} style={authentication_style.iconInput} />
+                    {isLoading ? <CustomIndicator /> : null}
+                    <RollLogo />
+                    <View>
+                        <Text style={authentication_style.welcome_label}>{ConstantsString.CREACC}</Text>
+                        <View style={authentication_style.form_authen}>
+                            <Image source={IconsPath.FULLNAME} style={authentication_style.icon_input} />
                             <TextInput
                                 returnKeyType='next'
-                                autoCapitalize='none'
+                                autoCapitalize='words'
+                                onSubmitEditing={() => emailRef.current.focus()}
                                 onChangeText={(value) => setFullname(value)}
-                                onSubmitEditing={() => pwRef.current.focus()}
-                                style={authentication_style.authen_input}
+                                style={authentication_style.input_authen}
                                 placeholder={ConstantsString.FULLNAME}
-                                placeholderTextColor={Colors.DARK} />
+                                placeholderTextColor={Colors.SMOKE} />
                         </View>
-                        <View style={authentication_style.form_input}>
-                            <Image source={IconsPath.EMAIL} style={authentication_style.iconInput} />
+                        <View style={authentication_style.form_authen}>
+                            <Image source={IconsPath.EMAIL} style={authentication_style.icon_input} />
                             <TextInput
+                                ref={emailRef}
+                                keyboardType='email-address'
                                 returnKeyType='next'
                                 autoCapitalize='none'
+                                onSubmitEditing={() => usernameRef.current.focus()}
                                 onChangeText={(value) => setEmail(value)}
-                                onSubmitEditing={() => pwRef.current.focus()}
-                                style={authentication_style.authen_input}
+                                style={authentication_style.input_authen}
                                 placeholder={ConstantsString.EMAIL}
-                                placeholderTextColor={Colors.DARK} />
+                                placeholderTextColor={Colors.SMOKE} />
                         </View>
-                        <View style={authentication_style.form_input}>
-                            <Image source={IconsPath.AUTHEN_USERNAME} style={authentication_style.iconInput} />
+                        <View style={authentication_style.form_authen}>
+                            <Image source={IconsPath.AUTHEN_USERNAME} style={authentication_style.icon_input} />
                             <TextInput
+                                ref={usernameRef}
                                 returnKeyType='next'
                                 autoCapitalize='none'
+                                onSubmitEditing={() => passwordRef.current.focus()}
                                 onChangeText={(value) => setUsername(value)}
-                                onSubmitEditing={() => pwRef.current.focus()}
-                                style={authentication_style.authen_input}
+                                style={authentication_style.input_authen}
                                 placeholder={ConstantsString.USERNAME}
-                                placeholderTextColor={Colors.DARK} />
+                                placeholderTextColor={Colors.SMOKE} />
                         </View>
-                        <View style={authentication_style.form_input}>
-                            <Image source={IconsPath.AUTHEN_PASSWORD} style={authentication_style.iconInput} />
+                        <View style={authentication_style.form_authen}>
+                            <Image source={IconsPath.AUTHEN_PASSWORD} style={authentication_style.icon_input} />
                             <TextInput
-                                ref={pwRef}
-                                returnKeyType='next'
                                 autoCapitalize='none'
+                                ref={passwordRef}
                                 onChangeText={(value) => setPassword(value)}
-                                style={authentication_style.authen_input}
+                                secureTextEntry={true}
+                                style={authentication_style.input_authen}
                                 placeholder={ConstantsString.PASSWORD}
-                                placeholderTextColor={Colors.DARK}
-                                secureTextEntry={true} />
+                                placeholderTextColor={Colors.SMOKE} />
                         </View>
-                        <View style={authentication_style.form_input}>
-                            <Image source={IconsPath.AUTHEN_PASSWORD} style={authentication_style.iconInput} />
-                            <TextInput
-                                ref={pwRef}
-                                returnKeyType='next'
-                                autoCapitalize='none'
-                                onChangeText={(value) => setPassword(value)}
-                                style={authentication_style.authen_input}
-                                placeholder={ConstantsString.CPASSWORD}
-                                placeholderTextColor={Colors.DARK}
-                                secureTextEntry={true} />
-                        </View>
-                    </Animated.View>
 
-                    <Animated.View style={[authentication_style.btnGo, { opacity: fade }]}>
-                        <Text style={authentication_style.btnGoLabel}>{ConstantsString.SIGNUP.toUpperCase()}</Text>
+                        <TouchableOpacity
+                            ref={submitRef}
+                            onPress={() => { Register() }}
+                            style={[authentication_style.authen_btn, { backgroundColor: Colors.BLACK }]}>
+                            <Text style={[authentication_style.authen_btn_label, { color: Colors.WHITE }]}>
+                                {ConstantsString.SIGNUP}
+                            </Text>
+                        </TouchableOpacity>
 
-                        <Animated.View style={[{ transform: [{ translateX: slide }] }]}>
+                        <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 15 }}>
+                            <Text style={{ color: Colors.DARK }}>{ConstantsString.HAVEACC}</Text>
                             <TouchableOpacity
-                                onPress={() => SignUp()}
-                                style={authentication_style.btnArrow}>
-                                <Image source={IconsPath.RIGHT_ARROW}
-                                    style={authentication_style.iconArrow} />
+                                onPress={() => { SignIn() }}>
+                                <Text style={{ color: Colors.PRIMARY, fontWeight: 'bold' }}>{ConstantsString.SIGNINOW}</Text>
                             </TouchableOpacity>
-                        </Animated.View>
-                    </Animated.View>
-
-                    <Animated.View style={[{ opacity: fade }]}>
-                        <TouchableOpacity>
-                            <Text style={authentication_style.link}>{ConstantsString.FORGOT}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => toSignIn()}>
-                            <Text style={{ ...authentication_style.link, fontWeight: 'bold', color: Colors.PRIMARY }}>{ConstantsString.SIGNIN.toUpperCase()}</Text>
-                        </TouchableOpacity>
-                    </Animated.View>
-
+                        </View>
+                    </View>
                 </ScrollView>
-            </View>
-        </SafeAreaView>
+
+            </SafeAreaView>
+        </View>
     )
 }
 

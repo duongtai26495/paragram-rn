@@ -1,14 +1,16 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { HomePage,ProfilePage,SignIn,SignUp } from '../screens'
+import { ProfilePage,Chat } from '../screens'
 import AuthenticationStack from './AuthenticationStack'
+import MainTab from './MainTab'
 const Stack = createNativeStackNavigator()
 const MainStack = () => {
   return (
-    <Stack.Navigator initialRouteName='HomePage' screenOptions={{headerShown:false}}>
-        <Stack.Screen name='HomePage' component={HomePage} /> 
+    <Stack.Navigator initialRouteName='MainTab' screenOptions={{headerShown:false}}>
+        <Stack.Screen name='MainTab' component={MainTab} /> 
         <Stack.Screen name='ProfilePage' component={ProfilePage} />
+        <Stack.Screen name='Chat' component={Chat} />
         <Stack.Screen name='AuthenticationStack' component={AuthenticationStack}  options={{animation:'slide_from_right'}}/>
     </Stack.Navigator>
   )

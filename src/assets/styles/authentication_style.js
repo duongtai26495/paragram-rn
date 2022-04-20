@@ -10,24 +10,28 @@ const authentication_style = StyleSheet.create({
     container_authen: {
         width: '100%',
         height: '100%',
-        backgroundColor: Colors.PRIMARY,
+        backgroundColor: Colors.LIGHT,
         justifyContent: 'center'
     },
     app_name: {
-        color: Colors.WHITE,
+        color: Colors.SECONDARY,
         fontSize: 20,
         alignSelf: 'center',
         fontWeight: 'bold'
     },
     authen_btn: {
         width: widthComponent,
-        padding: 15,
-        backgroundColor: Colors.WHITE,
+        backgroundColor: Colors.LIGHT,
         alignSelf: 'center',
         borderRadius: 5,
-        elevation: 5,
+        padding:15,
+        elevation: 2,
         shadowColor: Colors.DARK,
-        marginTop: 20
+        marginTop: 20,
+        shadowOpacity: 0.2,
+        shadowOffset: { 
+            width: 0.5, 
+            height: 0.5 },
     },
     authen_btn_label: {
         alignSelf: 'center',
@@ -41,7 +45,6 @@ const authentication_style = StyleSheet.create({
         marginVertical: 20
     },
     input_authen: {
-        width: '100%',
         flex: 1,
         borderLeftColor: Colors.SMOKE,
         borderLeftWidth: 1,
@@ -52,12 +55,16 @@ const authentication_style = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: Colors.WHITE,
         paddingHorizontal:5,
-        paddingVertical:10,
+        paddingVertical:15,
         borderRadius: 5,
         elevation: 4,
         shadowColor: Colors.SMOKE,
         alignSelf: 'center',
-        marginVertical: 10
+        marginVertical: 10,
+        shadowOpacity: 0.5,
+        shadowOffset: { 
+            width: 0.5, 
+            height: 0.5 },
     },
     icon_input: {
         width: 20,
@@ -84,7 +91,11 @@ const authentication_style = StyleSheet.create({
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
-        margin: 5
+        margin: 5,
+        shadowOpacity: 0.2,
+        shadowOffset: { 
+            width: 0.3, 
+            height: 0.3 },
     }
 })
 

@@ -5,32 +5,12 @@ import { StackActions } from '@react-navigation/native';
 import NavigationPath from '../constants/NavigationPath';
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import Storage from '../constants/Storage';
-const Home = ({navigation,route}) => {
 
-    useEffect(()=>{
-        CheckLogin()
-    },[])
-
-    const CheckLogin = async () =>{
-        if(await IsExistToken()){
-            console.log("User logged in")
-        }else{
-            console.log("User do not login")
-            navigation.dispatch(StackActions.replace(NavigationPath.AUTHENTICATIONSTACK))
-        }
-    }
-
-    const SignOut = async () =>{
-        await AsyncStorage.removeItem(Storage.LOCAL_ACCESS_TOKEN)
-        CheckLogin()
-    }
-
+const Friends = ({navigation, route}) => {
   return (
     <SafeAreaView>
         <StatusBar/>
-        <TouchableOpacity style={{backgroundColor:'rgba(255,20,20,1)',padding:5}} onPress={()=>SignOut()}>
-        <Text >SIGN OUT</Text>
-        </TouchableOpacity>
+
         <TouchableOpacity 
         style={{backgroundColor:'rgba(255,220,20,1)',padding:5}} 
         onPress={()=>navigation.navigate(NavigationPath.CHAT)}>
@@ -40,4 +20,4 @@ const Home = ({navigation,route}) => {
   )
 }
 
-export default Home
+export default Friends

@@ -31,5 +31,15 @@ export async function LoginWithUsernamePassword(username, password) {
             return data;
         })
         .catch(error => console.log(error))
+}
+
+export async function RegisterWithUsernamePassword(User){
+    let url = APIconstants.BASE_URL + APIconstants.SIGNUP
+    let  UserRegister = User;
+    
+    return await axios.post(url, UserRegister)
+    .then(response => {return response.data})
+    .catch(error => console.log(error))
+
 
 }

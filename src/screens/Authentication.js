@@ -16,15 +16,6 @@ import CustomStatusBar from '../components/CustomStatusBar'
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 const Authentication = ({navigation, route}) => {
-  useEffect(() => {
-    wlcEff()
-  }, [])
-
-  const fade = useRef(new Animated.Value(0)).current;
-
-  const wlcEff = () => {
-    Animated.timing(fade, { toValue: 1, duration: 1500, useNativeDriver: true }).start()
-  }
 
   return (
     <View style={authentication_style.container_authen}>
@@ -32,11 +23,11 @@ const Authentication = ({navigation, route}) => {
         {Platform.OS === 'ios' ? null : <CustomStatusBar barStyle={ConstantsString.DARK} />}
         <View style={{ marginBottom: height / 5 }}>
           <RollLogo />
-          <Animated.View style={[{ opacity: fade }]}>
+          <Animated.View>
             <Text style={authentication_style.app_name} >{ConstantsString.APPNAME.toUpperCase()}</Text>
           </Animated.View>
         </View>
-        <Animated.View style={[{ opacity: fade }]}>
+        <Animated.View>
           <TouchableOpacity
             onPress={() => navigation.dispatch(StackActions.replace(NavigationPath.SIGNIN))}
             style={authentication_style.authen_btn}>

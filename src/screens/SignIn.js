@@ -17,6 +17,15 @@ const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 const SignIn = ({ navigation, route }) => {
 
+    useEffect(()=>{
+        msg()
+    },[])
+
+    const msg = () => {
+      if(route.params != null){
+        console.log(route.params.msg)
+      }
+    }
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
     const [isLoading, setLoading] = useState(false)
@@ -32,7 +41,7 @@ const SignIn = ({ navigation, route }) => {
             .then(() => {
                 console.log("Login Success")
                 setLoading(false)
-                navigation.dispatch(StackActions.replace(NavigationPath.HOMEPAGE));
+                navigation.dispatch(StackActions.replace(NavigationPath.MAINTAB));
             })
             .catch(error => {
                 console.log("Login Error: ", error)
@@ -40,6 +49,9 @@ const SignIn = ({ navigation, route }) => {
             })
     }
 
+    const SignUp = () =>{
+        navigation.dispatch(StackActions.replace(NavigationPath.SIGNUP));
+    }
 
     return (
         <View style={[authentication_style.container_authen, { backgroundColor: Colors.WHITE }]}>
@@ -98,8 +110,9 @@ const SignIn = ({ navigation, route }) => {
                         </View>
                         <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 15 }}>
                             <Text style={{ color: Colors.DARK }}>{ConstantsString.DONTACC}</Text>
-                            <TouchableOpacity>
-                                <Text style={{ color: Colors.PRIMARY }}>{ConstantsString.SIGNUP}</Text>
+                            <TouchableOpacity
+                            onPress={() => { SignUp() }}>
+                                <Text style={{ color: Colors.PRIMARY, fontWeight:'bold' }}>{ConstantsString.SIGNUP}</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
