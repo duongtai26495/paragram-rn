@@ -1,12 +1,15 @@
 import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native'
 import React from 'react'
+import CustomStatusBar from '../components/CustomStatusBar'
+import ConstantsString from '../constants/ConstantsString'
+import InfoBox from '../components/InfoBox'
 
 const Profile = ({ navigation, route }) => {
     return (
-        <View style={{ width: '100%', height: '100%' }}>
-            <SafeAreaView>
-            </SafeAreaView>
-        </View>
+        <SafeAreaView>
+            <CustomStatusBar barStyle={ConstantsString.DARK} navigation={navigation}/>
+            <InfoBox  />
+        </SafeAreaView>
     )
 }
 

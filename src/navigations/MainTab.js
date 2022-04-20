@@ -1,5 +1,5 @@
 import React from 'react'
-import { Friends, HomePage } from '../screens'
+import { Friends, HomePage, ProfilePage } from '../screens'
 import { View, TouchableOpacity, Image } from 'react-native'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import NavigationPath from '../constants/NavigationPath'
@@ -19,7 +19,6 @@ const MainTab = () => {
             options={{
                 headerShown: false,
                 presentation: true,
-                animationEnabled: true,
             }}>
             <Tab.Screen
                 name={NavigationPath.HOME}
@@ -51,6 +50,26 @@ const MainTab = () => {
                         <View>
                             <Image
                                 source={IconsPath.FRIENDS}
+                                resizeMode='contain'
+                                style={{
+                                    width: iconSize,
+                                    height: iconSize,
+                                    tintColor: focused ? Colors.SECONDARY : Colors.SMOKE
+                                }}
+                            />
+                        </View>
+                    )
+                }} />
+                <Tab.Screen
+                name={NavigationPath.PROFILE}
+                component={ProfilePage}
+                options={{
+                    headerShown: false,
+                    animation: true,
+                    tabBarIcon: ({ focused }) => (
+                        <View>
+                            <Image
+                                source={IconsPath.PROFILE}
                                 resizeMode='contain'
                                 style={{
                                     width: iconSize,

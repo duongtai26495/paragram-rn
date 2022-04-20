@@ -21,7 +21,7 @@ const authentication_style = StyleSheet.create({
     },
     authen_btn: {
         width: widthComponent,
-        backgroundColor: Colors.LIGHT,
+        backgroundColor: Colors.WHITE,
         alignSelf: 'center',
         borderRadius: 5,
         padding:15,

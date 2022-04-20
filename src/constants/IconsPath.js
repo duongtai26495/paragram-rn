@@ -14,4 +14,6 @@ export default {
     TWITTER : require('../assets/icons/twitter.png'),
     FRIENDS: require('../assets/icons/friends.png'),
     HOME: require('../assets/icons/home.png'),
+    BACK:   require('../assets/icons/back.png'),
+    PROFILE:   require('../assets/icons/profile.png'),
 }

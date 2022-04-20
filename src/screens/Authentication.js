@@ -20,7 +20,7 @@ const Authentication = ({navigation, route}) => {
   return (
     <View style={authentication_style.container_authen}>
       <SafeAreaView style={{flex:1,justifyContent:'space-evenly'}}>
-        {Platform.OS === 'ios' ? null : <CustomStatusBar barStyle={ConstantsString.DARK} />}
+        {Platform.OS === 'ios' ? null : <CustomStatusBar barStyle={ConstantsString.DARK} navigation={navigation} />}
         <View style={{ marginBottom: height / 5 }}>
           <RollLogo />
           <Animated.View>

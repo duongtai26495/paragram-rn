@@ -8,4 +8,5 @@ export default {
     FRIENDS:'Friends',
     CHAT:'Chat',
     MAINTAB:'MainTab',
+    PROFILE: 'Profile',
 }

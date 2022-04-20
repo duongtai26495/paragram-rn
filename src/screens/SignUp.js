@@ -63,7 +63,7 @@ const SignUp = ({ navigation, route }) => {
     return (
         <View style={[authentication_style.container_authen, { backgroundColor: Colors.WHITE }]}>
             <SafeAreaView>
-                <CustomStatusBar barStyle={ConstantsString.DARK} />
+                <CustomStatusBar barStyle={ConstantsString.DARK}  navigation={navigation} />
                 <ScrollView>
                     {isLoading ? <CustomIndicator /> : null}
                     <RollLogo />

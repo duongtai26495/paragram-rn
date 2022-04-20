@@ -20,5 +20,6 @@ DEFAULT: 'default',
  GENDER:    'Gender',
 ORSIGNWITH : 'Or sign in with',
 HAVEACC: 'Have an Account ? ',
-SIGNINOW:   'Sign in now'
+SIGNINOW:   'Sign in now',
+BACK :  'Back',
 }

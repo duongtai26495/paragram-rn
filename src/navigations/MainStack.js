@@ -9,7 +9,6 @@ const MainStack = () => {
   return (
     <Stack.Navigator initialRouteName='MainTab' screenOptions={{headerShown:false}}>
         <Stack.Screen name='MainTab' component={MainTab} /> 
-        <Stack.Screen name='ProfilePage' component={ProfilePage} />
         <Stack.Screen name='Chat' component={Chat} />
         <Stack.Screen name='AuthenticationStack' component={AuthenticationStack}  options={{animation:'slide_from_right'}}/>
     </Stack.Navigator>

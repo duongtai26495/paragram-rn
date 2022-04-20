@@ -21,7 +21,7 @@ export async function LoginWithUsernamePassword(username, password) {
     dataLogin.append('username', uname);
     dataLogin.append('password', pw);
     let option = {
-        method:'POST',
+        method: 'POST',
         body: dataLogin,
     }
 
@@ -33,13 +33,33 @@ export async function LoginWithUsernamePassword(username, password) {
         .catch(error => console.log(error))
 }
 
-export async function RegisterWithUsernamePassword(User){
+export async function RegisterWithUsernamePassword(User) {
     let url = APIconstants.BASE_URL + APIconstants.SIGNUP
-    let  UserRegister = User;
-    
+    let UserRegister = User;
+
     return await axios.post(url, UserRegister)
-    .then(response => {return response.data})
-    .catch(error => console.log(error))
+        .then(response => { return response.data })
+        .catch(error => console.log(error))
+}
 
-
+export async function saveUserStorage(username) {
+    let url = APIconstants.BASE_URL + APIconstants.PROFILE + username;
+    return await axios.get(url)
+        .then(response => {
+            const data = response.data.result
+            const items = [
+                [Storage.FULLNAME_STORAGE, data.full_name],
+                [Storage.USERNAME_STORAGE, data.username],
+                [Storage.EMAIL_STORAGE, data.email],
+                [Storage.AVATAR_STORAGE, data.avatar != null ? data.avatar : "" ],
+                [Storage.GENDER_STORAGE, data.gender + ""]
+            ]
+            AsyncStorage.multiSet(
+                items,
+                () => {
+                    console.log("Save info success!")
+                }
+            )
+        })
+        .catch(error => console.log(error))
 }

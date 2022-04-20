@@ -7,7 +7,7 @@ import Colors from '../assets/colors/Colors'
 import IconsPath from '../constants/IconsPath'
 import Storage from "../constants/Storage"
 import CustomIndicator from '../components/CustomIndicator'
-import { LoginWithUsernamePassword, IsExistToken } from '../functions/AuthenticationFunctions'
+import { LoginWithUsernamePassword, IsExistToken, saveUserStorage } from '../functions/AuthenticationFunctions'
 import { StackActions } from '@react-navigation/native'
 import NavigationPath from '../constants/NavigationPath'
 import AsyncStorage from "@react-native-async-storage/async-storage"
@@ -37,6 +37,7 @@ const SignIn = ({ navigation, route }) => {
         await LoginWithUsernamePassword(username, password)
             .then(response => {
                 AsyncStorage.setItem(Storage.LOCAL_ACCESS_TOKEN, response.access_token)
+                saveUserStorage(username)
             })
             .then(() => {
                 console.log("Login Success")
@@ -56,7 +57,7 @@ const SignIn = ({ navigation, route }) => {
     return (
         <View style={[authentication_style.container_authen, { backgroundColor: Colors.WHITE }]}>
             <SafeAreaView>
-                <CustomStatusBar barStyle={ConstantsString.DARK} />
+                <CustomStatusBar barStyle={ConstantsString.DARK}  navigation={navigation}  />
                 <ScrollView>
                     {isLoading ? <CustomIndicator /> : null}
                     <RollLogo />
