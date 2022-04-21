@@ -22,4 +22,5 @@ ORSIGNWITH : 'Or sign in with',
 HAVEACC: 'Have an Account ? ',
 SIGNINOW:   'Sign in now',
 BACK :  'Back',
+SIGNOUT:    'Sign Out',
 }

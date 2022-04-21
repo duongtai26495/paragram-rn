@@ -2,16 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 import axios from "axios";
 import APIconstants from "../constants/APIconstants";
 import Storage from "../constants/Storage"
-export async function IsExistToken() {
-    let token = await AsyncStorage.getItem(Storage.LOCAL_ACCESS_TOKEN);
-    console.log("TOKEN: ", token)
-    if (token != null) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
+import saveInfoUserLogin from './StorageFunctions'
 export async function LoginWithUsernamePassword(username, password) {
     let url = APIconstants.BASE_URL + APIconstants.LOGIN
     let uname = username;
@@ -58,8 +49,7 @@ export async function saveUserStorage(username) {
                 items,
                 () => {
                     console.log("Save info success!")
-                }
-            )
+                })
         })
         .catch(error => console.log(error))
 }

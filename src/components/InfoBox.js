@@ -43,7 +43,7 @@ const style = StyleSheet.create({
         width:widthComponent,
         height:widthComponent,
         backgroundColor:Colors.WHITE,
-        elevation:2,
+        elevation:3,
         shadowColor:Colors.SMOKE,
         shadowOffset:{
             height:0.5,
