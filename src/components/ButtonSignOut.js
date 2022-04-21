@@ -21,8 +21,9 @@ const style = StyleSheet.create({
         width:widthComponent,
         borderRadius:10,
         backgroundColor:Colors.SECONDARY,
-        padding:10,
+        padding:15,
         alignSelf:'center',
+        marginVertical:10,
     },
     label:{
         color:Colors.WHITE,
