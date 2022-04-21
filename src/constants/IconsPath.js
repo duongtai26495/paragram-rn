@@ -16,4 +16,6 @@ export default {
     HOME: require('../assets/icons/home.png'),
     BACK:   require('../assets/icons/back.png'),
     PROFILE:   require('../assets/icons/profile.png'),
+    INFORMATION : require('../assets/icons/information.png'),
+    SEARCH : require('../assets/icons/search.png'),
 }

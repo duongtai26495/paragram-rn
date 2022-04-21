@@ -1,4 +1,4 @@
-import { View, Text,StyleSheet,Dimensions, Image } from 'react-native'
+import { View, Text,StyleSheet,Dimensions, Image, Animated } from 'react-native'
 import React from 'react'
 import Colors from '../assets/colors/Colors';
 import AsyncStorage from "@react-native-async-storage/async-storage"
@@ -10,7 +10,16 @@ const InfoBox = ({props}) => {
 
     React.useEffect(()=>{
         getInfo()
+       wlcEff()
     },[])
+
+    const fade = React.useRef(new Animated.Value(0)).current;
+
+    const wlcEff = () =>{
+        Animated.sequence([
+            Animated.timing(fade, {toValue:1, duration:1000, useNativeDriver:true})
+        ]).start()
+    }
 
     const [fullname, setFullname] = React.useState()
     const [username, setUsername] = React.useState()

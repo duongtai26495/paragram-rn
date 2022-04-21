@@ -24,4 +24,7 @@ export default {
     BACK: 'Back',
     SIGNOUT: 'Sign Out',
     REMEMBERME: 'Remember me',
+    ABOUT:  'Information',
+    DETAILS:'Details of your profile',
+    SEARCHING: 'Searching a friend....'
 }
