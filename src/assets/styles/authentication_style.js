@@ -96,6 +96,14 @@ const authentication_style = StyleSheet.create({
         shadowOffset: { 
             width: 0.3, 
             height: 0.3 },
+    },
+    view_switch:{
+        marginVertical:10,
+        width:widthComponent,
+        alignSelf:'center',
+        flexDirection:'row',
+        justifyContent:'flex-end',
+        alignItems:'center'
     }
 })
 

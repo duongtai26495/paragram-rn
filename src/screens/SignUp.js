@@ -42,12 +42,18 @@ const SignUp = ({ navigation, route }) => {
                 const data = response.result;
                 const msg = response.msg;
 
-                AsyncStorage.multiSet([
+                let itemsSave = [
                     [Storage.FULLNAME_STORAGE, data.full_name],
                     [Storage.USERNAME_STORAGE, data.username],
-                    [Storage.EMAIL_STORAGE, data.email]],
+                    [Storage.EMAIL_STORAGE, data.email],
+                ]
+
+                AsyncStorage.multiSet(
+                    itemsSave,
                     () => {
                         setLoading(false)
+                        let items = [Storage.USERNAME_REMEMBER, Storage.PASSWORD_REMEMBER, Storage.ISREMEMBER]
+                        AsyncStorage.multiRemove(items, ()=>{console.log("Removed all item remember")})
                         navigation.dispatch(StackActions.replace(NavigationPath.SIGNIN, { msg: msg }))
                     })
             }).catch(error => {

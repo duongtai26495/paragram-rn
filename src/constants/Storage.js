@@ -5,4 +5,7 @@ export default {
     EMAIL_STORAGE       :   'email_storage',
     AVATAR_STORAGE      :   'avatar_storage',
     GENDER_STORAGE      :   'gender_storage',
+    USERNAME_REMEMBER   :   'username_remember',
+    PASSWORD_REMEMBER   :   'password_remember',
+    ISREMEMBER          :   'is_remember',
 }
