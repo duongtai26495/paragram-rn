@@ -20,12 +20,11 @@ const CustomStatusBar = (props) => {
 
   return (
     <>
-     {Platform.OS === 'ios' ? <StatusBar
+     <StatusBar
         animated={true}
         style={authentication_style.statusBar}
-        translucent
         backgroundColor={Colors.PRIMARY}
-        barStyle={barStyle} /> : null } 
+        barStyle={barStyle} />
       {goToBack()}
     </>
 
